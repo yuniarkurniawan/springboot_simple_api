@@ -99,10 +99,10 @@ public class MahasiswaController {
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Mahasiswa> updateMahasiswa(
 			@PathVariable("id") Long id, 
-			@RequestBody Mahasiswa mahasiswaJsonBody){
+			@RequestBody MahasiswaDTO mahasiswaDTO){
 		Mahasiswa mahasiswa = null;
 		try {
-			mahasiswa = mahasiswaService.updateMahasiswa(id, mahasiswaJsonBody);
+			mahasiswa = mahasiswaService.updateMahasiswa(id, mahasiswaDTO);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}		
