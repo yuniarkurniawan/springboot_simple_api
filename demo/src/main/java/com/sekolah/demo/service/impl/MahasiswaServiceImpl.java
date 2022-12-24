@@ -73,11 +73,11 @@ public class MahasiswaServiceImpl implements MahasiswaService {
 	}
 	
 	@Override
-	public Mahasiswa updateMahasiswa(Long idMahasiswa, Mahasiswa mahasiswa) {
+	public Mahasiswa updateMahasiswa(Long idMahasiswa, MahasiswaDTO mahasiswaDTO) {
 		Mahasiswa dataMahasiswa = mahasiswaRepository.findById(idMahasiswa).orElse(null);
-		dataMahasiswa.setNamaMahasiswa(mahasiswa.getNamaMahasiswa());
-		dataMahasiswa.setAlamatMahasiswa(mahasiswa.getAlamatMahasiswa());
-		Fakultas fakultas = fakultasRepository.findById(mahasiswa.getFakultas().getIdFakultas()).orElse(null);
+		dataMahasiswa.setNamaMahasiswa(mahasiswaDTO.getNama_mahasiswa());
+		dataMahasiswa.setAlamatMahasiswa(mahasiswaDTO.getAlamat_mahasiswa());
+		Fakultas fakultas = fakultasRepository.findById(mahasiswaDTO.getFakultas()).orElse(null);
 		dataMahasiswa.setFakultas(fakultas);
 		return mahasiswaRepository.save(dataMahasiswa);
 	}
