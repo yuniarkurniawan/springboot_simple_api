@@ -15,7 +15,7 @@ public interface MahasiswaService {
 	
 	public Mahasiswa getMahasiswaById(Long idMahasiswa);
 	public Mahasiswa addMahasiswa(MahasiswaDTO mahasiswaDTO);
-	public Mahasiswa updateMahasiswa(Long idMahasiswa, Mahasiswa mahasiswa);
+	public Mahasiswa updateMahasiswa(Long idMahasiswa, MahasiswaDTO mahasiswaDTO);
 	public Mahasiswa deleteMahasiswa(Long idMahasiswa) throws Exception;
 	
 	public Page<MahasiswaListDTO> getAllMahasiswaFakultasFilterPageable(String search, Pageable pageable);
