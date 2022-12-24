@@ -2,6 +2,7 @@ package com.sekolah.demo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
@@ -76,6 +77,7 @@ public class FakultasControllerTest {
 		assertEquals(pageFakultas.getTotalElements(), 0);
 	}
 	
+	@Test
 	public void testUpdateFakultas() {
 		this.createData();
 		
@@ -86,6 +88,7 @@ public class FakultasControllerTest {
 		Fakultas fakultasOld = fakultasService.updateFakultas(1L, fakultas);
 		assertEquals(fakultasOld.getNamaFakultas(), "FISIP");
 	}
+	
 	
 	@Test
 	public void testDeleteFakultas() {
@@ -98,4 +101,5 @@ public class FakultasControllerTest {
 		}
 		assertEquals(fakultas.getIdFakultas(), 1L);
 	}
+	
 }
