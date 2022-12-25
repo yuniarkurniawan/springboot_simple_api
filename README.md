@@ -1,3 +1,5 @@
 # springboot_simple_api
-Simple Restfull API with JPA Hibernate and Query examples using gradle
-Jupiter unit test
+# Simple Restfull API with gradle
+# JPA Hibernate and Query 
+# Criteria builder
+# Jupiter unit test
