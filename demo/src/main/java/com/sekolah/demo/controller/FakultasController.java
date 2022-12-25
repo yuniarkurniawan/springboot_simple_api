@@ -31,9 +31,54 @@ public class FakultasController {
 	@Autowired
 	private FakultasService fakultasService;
 	
+//	@GetMapping("/criteria_list")
+//	public ResponseEntity<Map<String, Object>> getAllFakultasCriteria(
+//			@RequestParam(required = false) String search,
+//			@RequestParam(defaultValue = "0") int page,
+//			@RequestParam(defaultValue = "5") int size
+//			){
+//		Map<String, Object> jsonRespone = new LinkedHashMap<>();
+//		try {
+//			
+//			List<Fakultas> dataCriteria = fakultasService.getAllFakultasCriteria(page, size, search.toLowerCase());
+//			
+//			jsonRespone.put("data", dataCriteria);
+//			jsonRespone.put("current_page", page);
+//			jsonRespone.put("total_items", dataCriteria.size());
+//			jsonRespone.put("total_pages", dataCriteria.size()/size);
+//			jsonRespone.put("message", "success");
+//			jsonRespone.put("code", HttpStatus.OK);
+//			
+//		} catch (Exception e) {
+//			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
+//		
+//		return new ResponseEntity<Map<String, Object>>(jsonRespone, HttpStatus.OK);
+//	}
+	
+	@GetMapping("/criteria_list")
+	public ResponseEntity<Map<String, Object>> getAllFakultasCriteria(
+			@RequestParam(required = false) String search,
+			@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "5") int size
+			){
+		Map<String, Object> jsonRespone = new LinkedHashMap<>();
+		try {
+			
+			jsonRespone = fakultasService.getAllFakultasCriteriaMap(page, size, search.toLowerCase());
+			jsonRespone.put("message", "success");
+			jsonRespone.put("code", HttpStatus.OK);
+			
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		return new ResponseEntity<Map<String, Object>>(jsonRespone, HttpStatus.OK);
+	}
+	
 	@GetMapping("/list")
 	public ResponseEntity<Map<String, Object>> getAllFakultas(
-			@RequestParam(required=false) String search,
+			@RequestParam(required = false) String search,
 			@RequestParam(defaultValue = "0") int page,
 		    @RequestParam(defaultValue = "5") int size
 			){
@@ -47,14 +92,14 @@ public class FakultasController {
 			if(search==null) {
 				pageFakultas = fakultasService.getAllFakultasPageable(paging);
 			}else {
-				pageFakultas = fakultasService.getAllFakultasFilterPageable(search, search, paging);
+				pageFakultas = fakultasService.getAllFakultasFilterPageable(search.toLowerCase(), search.toLowerCase(), paging);
 			}
 			
 			listFakultas = pageFakultas.getContent();
 			jsonRespone.put("data", listFakultas);
-			jsonRespone.put("currentPage", pageFakultas.getNumber());
-			jsonRespone.put("totalItems", pageFakultas.getTotalElements());
-			jsonRespone.put("totalPages", pageFakultas.getTotalPages());
+			jsonRespone.put("current_page", pageFakultas.getNumber());
+			jsonRespone.put("total_items", pageFakultas.getTotalElements());
+			jsonRespone.put("total_pages", pageFakultas.getTotalPages());
 			jsonRespone.put("message", "success");
 			jsonRespone.put("code", HttpStatus.OK);
 			

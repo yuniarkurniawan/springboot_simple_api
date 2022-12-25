@@ -58,9 +58,9 @@ public class MahasiswaController {
 						
 			listMahasiswa = pageMahasiswa.getContent();
 			jsonRespone.put("data", listMahasiswa);
-			jsonRespone.put("currentPage", pageMahasiswa.getNumber());
-			jsonRespone.put("totalItems", pageMahasiswa.getTotalElements());
-			jsonRespone.put("totalPages", pageMahasiswa.getTotalPages());
+			jsonRespone.put("current_page", pageMahasiswa.getNumber());
+			jsonRespone.put("total_items", pageMahasiswa.getTotalElements());
+			jsonRespone.put("total_pages", pageMahasiswa.getTotalPages());
 			jsonRespone.put("message", "success");
 			jsonRespone.put("code", HttpStatus.OK);
 			
